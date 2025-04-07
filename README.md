@@ -5,6 +5,8 @@ I found that this only occurs when I add in the LEAPSynthisesPass() to the workf
 The bqskitTesting.py script has been run in a clean conda envrionment with the latest version of python installed by: conda install python
 Bqskit and all of its dependinces are installed in the recomended way through pip: pip install bqskit
 
+I have also added an example of the qasm files I read into the program which contain the Qiskit circuits I am hoping to optimize.
+
 Below are all of the packages that I currently have installed in this envrionment.
 
 # packages in environment at /opt/homebrew/Caskroom/miniconda/base/envs/Bqskit:
