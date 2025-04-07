@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/compiler.py", line 439, in _send_recv
+    return self._recv_handle_log_error()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/compiler.py", line 467, in _recv_handle_log_error
+    raise RuntimeError(payload)
+RuntimeError: Traceback (most recent call last):
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/runtime/worker.py", line 462, in _try_step_next_ready_task
+    future = task.step(self._get_desired_result(task))
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/runtime/task.py", line 115, in step
+    to_return = self.coro.send(send_val)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/runtime/task.py", line 149, in run
+    return await self.fnargs[0](*self.fnargs[1], **self.fnargs[2])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/task.py", line 54, in run
+    await self.workflow.run(self.circuit, self.data)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/workflow.py", line 75, in run
+    await pass_obj.run(circuit, data)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/passes/synthesis/synthesis.py", line 52, in run
+    circuit.become(await self.synthesize(data.target, data))
+                                         ^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/passdata.py", line 66, in target
+    self._target = self._target.get_unitary()
+                   ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/ir/circuit.py", line 2631, in get_unitary
+    utry = UnitaryBuilder(self.num_qudits, self.radixes)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/qis/unitary/unitarybuilder.py", line 80, in __init__
+    self.tensor = self.tensor.reshape(self.radixes * 2)
+                  ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+ValueError: maximum supported dimension for an ndarray is currently 64, found 254
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/Users/chris/Projects/UC Merced/Grad Research/Quantum Computation research/spin1_uhlmannphase/bqskitTesting.py", line 41, in <module>
+    circs.append(compiler.compile(circuit_x, workflow=Costin_workflow))
+                 ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/compiler.py", line 397, in compile
+    result = self.result(task_id)
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/compiler.py", line 332, in result
+    msg, payload = self._send_recv(RuntimeMessage.REQUEST, task_id)
+                   ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/homebrew/Caskroom/miniconda/base/envs/Bqskit/lib/python3.13/site-packages/bqskit/compiler/compiler.py", line 444, in _send_recv
+    raise RuntimeError('Server connection unexpectedly closed.') from e
+RuntimeError: Server connection unexpectedly closed.
+
